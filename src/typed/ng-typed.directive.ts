@@ -8,7 +8,7 @@ import {Typed} from './typed';
 export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
   typed: Typed;
   @Input('ng-typed') ngTyped = {
-    speed: null,
+    speed: 0,
     timeout: 0,
     hideCursorOnComplete: false,
     text: ''
@@ -21,7 +21,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
   constructor (private elRef: ElementRef) {}
 
   ngOnInit () {
-    if (this.ngTyped.text === '') {
+    if (!this.ngTyped.text || this.ngTyped.text === '') {
       this.ngTyped.text = this.elRef.nativeElement.innerHTML;
     }
     if (!this.checkContent()) {
@@ -70,7 +70,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
     return this.ngTyped.text;
   }
 
-  private createTyped () {
+  createTyped () {
     this.typed = new Typed(this.elRef.nativeElement, {
         speed: this.ngTyped.speed,
         timeout: this.ngTyped.timeout,
