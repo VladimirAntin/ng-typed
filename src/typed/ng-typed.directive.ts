@@ -7,10 +7,12 @@ import {Typed} from './typed';
 })
 export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
   typed: Typed;
-  @Input('speed') speed: number | undefined;
-  @Input('timeout') timeout: number | undefined;
-  @Input('hideCursorOnComplete') hideCursorOnComplete = false;
-  @Input('text') text: any = '';
+  @Input('ng-typed') ngTyped = {
+    speed: null,
+    timeout: 0,
+    hideCursorOnComplete: false,
+    text: ''
+  }
   @Output('complete') complete: EventEmitter<null> = new EventEmitter();
   typingLock = false;
   contentObservable: Observable<string>;
@@ -19,8 +21,8 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
   constructor (private elRef: ElementRef) {}
 
   ngOnInit () {
-    if (this.text === '') {
-      this.text = this.elRef.nativeElement.innerHTML;
+    if (this.ngTyped.text === '') {
+      this.ngTyped.text = this.elRef.nativeElement.innerHTML;
     }
     if (!this.checkContent()) {
       return;
@@ -36,7 +38,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
     if (!this.checkContent()) {
       this.contentObservable = new Observable((ob) => {
         if (this.checkContent()) {
-          ob.next(this.text);
+          ob.next(this.ngTyped.text);
           ob.complete();
         }
       });
@@ -57,7 +59,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
       if (this.typingLock) {
         return;
       }
-      this.typed.textContent = this.text;
+      this.typed.textContent = this.ngTyped.text;
       this.typed.begin();
       this.typingLock = true;
     }
@@ -65,20 +67,20 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
 
 
   private checkContent() {
-    return this.text;
+    return this.ngTyped.text;
   }
 
   private createTyped () {
     this.typed = new Typed(this.elRef.nativeElement, {
-        speed: this.speed,
-        timeout: this.timeout,
-        hideCursorOnComplete: this.hideCursorOnComplete,
+        speed: this.ngTyped.speed,
+        timeout: this.ngTyped.timeout,
+        hideCursorOnComplete: this.ngTyped.hideCursorOnComplete,
         onComplete: () => {
           this.complete.emit(null);
           this.typingLock = false;
         }
       },
-      this.text
+      this.ngTyped.text
     );
 
     this.typed.begin();

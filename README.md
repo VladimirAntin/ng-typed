@@ -33,4 +33,4 @@ export class AppModule {}
 - Use it in your template
 
 ``` html
-<span ng-typed [speed]="40" [timeout]="1000" (complete)="onComplete()"></span>
+<span [ng-typed]="{speed: 40, timeout: 1000}"></span>
