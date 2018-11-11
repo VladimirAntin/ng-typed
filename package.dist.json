@@ -1,0 +1,34 @@
+{
+    "name": "ng-typed",
+    "version": "0.0.1",
+    "description": "",
+    "main": "bundles/ng-typed.umd.js",
+    "module": "index.js",
+    "typings": "index.d.ts",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vladimirantin/ng-typed.git"
+    },
+    "keywords": [
+      "angular",
+      "angular",
+      "6",
+      "typed",
+      "typing",
+      "module"
+    ],
+    "author": "Vladimir Antin <antin502@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/vladimirantin/ng-typed/issues"
+    },
+    "homepage": "https://github.com/vladimirantin/ng-typed#readme",
+    "peerDependencies": {
+      "@angular/common": "^6.0.3",
+      "@angular/core": "^6.0.3",
+      "reflect-metadata": "^0.1.8",
+      "rxjs": "^6.0.0",
+      "zone.js": "^0.8.26"
+    }
+  }
+  
