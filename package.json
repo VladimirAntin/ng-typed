@@ -1,0 +1,45 @@
+{
+  "name": "ng-typed",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/bundles/ng-typed.umd.js",
+  "scripts": {
+    "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.js dist/index.js.map dist/LICENCE dist/README.md",
+    "bundling": "rollup -c",
+    "minify": "uglifyjs dist/bundles/ng-typed.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ng-typed.umd.min.js",
+    "build": "npm run cleanup && ngc && npm run bundling && npm run minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladimirantin/ng-typed.git"
+  },
+  "keywords": [
+    "angular",
+    "angular",
+    "6",
+    "typed",
+    "typing",
+    "module"
+  ],
+  "author": "Vladimir Antin <antin502@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladimirantin/ng-typed/issues"
+  },
+  "homepage": "https://github.com/vladimirantin/ng-typed#readme",
+  "dependencies": {
+    "@angular/common": "^6.0.3",
+    "@angular/core": "^6.0.3",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^6.0.3",
+    "@angular/compiler-cli": "^6.0.3",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.0",
+    "typescript": "^2.7.2",
+    "uglify-js": "^3.4.9"
+  }
+}
