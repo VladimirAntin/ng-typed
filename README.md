@@ -1,10 +1,11 @@
 # Angular 6 Ng Typed animation Directive
 
-# Usage
+## Installation
 
-- Install node_module `ng-typed`
+`ng-typed` is available via [npm](https://www.npmjs.com/package/ng-typed)
 
-```
+Using npm:
+```bash
 $ npm install ng-typed --save
 ```
 
@@ -34,3 +35,24 @@ export class AppModule {}
 
 ``` html
 <span [ng-typed]="{speed: 40, timeout: 1000}"></span>
+
+```
+
+## Demo
+
+- [Working Demo](https://vladimirantin.github.io/projects/ng-typed)
+
+## @Input("ng-typed")
+
+- speed
+- timeout
+- hideCursorOnComplete
+- text
+
+## @Output("complete")
+
+
+## Creator
+
+#### [Vladimir Antin](mailto:antin502@gmail.com)
+- [@GitHub](https://github.com/vladimirantin)
