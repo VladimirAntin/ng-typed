@@ -3,6 +3,7 @@ export interface Options {
   timeout?: any;
   showCursor?: boolean;
   hideCursorOnComplete?: boolean;
+  hideCursorOnStart?: boolean;
   onComplete?: any;
 }
 export class Typed {
@@ -16,11 +17,12 @@ export class Typed {
     timeout: any;
 
     constructor(element: any, options: Options, textContent: string) {
-        const defaults: any = {
+        const defaults: Options = {
             speed: 0,
             timeout: 0,
             showCursor: true,
             hideCursorOnComplete: false,
+            hideCursorOnStart: false,
             onComplete: () => {}
         };
 
@@ -38,8 +40,9 @@ export class Typed {
         if (this.typingComplete) {
             return this.restart();
         }
-
-        this.insertCursor();
+        if(!this.options.hideCursorOnStart){
+            this.insertCursor();
+        }
 
         this.timeout = setTimeout(() => {
             this.typewrite();
@@ -138,8 +141,7 @@ export class Typed {
         if (this.cursorBlinking === isBlinking) {
             return;
         }
-
-        this.cursorBlinking = isBlinking;
+        this.cursorBlinking = this.options.hideCursorOnStart == false;
         const status = isBlinking ? 'infinite' : 0;
         this.cursor.style.animationIterationCount = status;
     }

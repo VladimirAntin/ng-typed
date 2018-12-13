@@ -11,6 +11,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
     speed: 0,
     timeout: 0,
     hideCursorOnComplete: false,
+    hideCursorOnStart: false,
     text: ''
   }
   @Output('complete') complete: EventEmitter<null> = new EventEmitter();
@@ -75,6 +76,7 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
         speed: this.ngTyped.speed,
         timeout: this.ngTyped.timeout,
         hideCursorOnComplete: this.ngTyped.hideCursorOnComplete,
+        hideCursorOnStart: this.ngTyped.hideCursorOnStart,
         onComplete: () => {
           this.complete.emit(null);
           this.typingLock = false;

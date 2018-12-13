@@ -1,6 +1,6 @@
 {
   "name": "ng-typed",
-  "version": "1.0.0",
+  "version": "1.0.2-rc",
   "description": "",
   "main": "bundles/ng-typed.umd.js",
   "module": "index.js",
