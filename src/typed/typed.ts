@@ -1,14 +1,15 @@
-export interface Options {
+export interface NgTypedOptions {
   speed?: any;
   timeout?: any;
   showCursor?: boolean;
   hideCursorOnComplete?: boolean;
-  hideCursorOnStart?: boolean;
+  hideCursor?: boolean;
   onComplete?: any;
+  text: string;
 }
 export class Typed {
     element: any;
-    options: Options;
+    options: NgTypedOptions;
     textContent: string;
     strPos: number;
     cursor: any;
@@ -16,14 +17,15 @@ export class Typed {
     typingComplete: boolean;
     timeout: any;
 
-    constructor(element: any, options: Options, textContent: string) {
-        const defaults: Options = {
+    constructor(element: any, options: NgTypedOptions) {
+        const defaults: NgTypedOptions = {
             speed: 0,
             timeout: 0,
             showCursor: true,
             hideCursorOnComplete: false,
-            hideCursorOnStart: false,
-            onComplete: () => {}
+            hideCursor: false,
+            onComplete: () => {},
+            text: ''
         };
 
         this.element = element;
@@ -31,7 +33,7 @@ export class Typed {
         this.textContent = element.textContent.trim();
         this.strPos = 0;
         this.typingComplete = false;
-        this.textContent = textContent;
+        this.textContent = this.options.text;
         this.element.textContent = '';
         this.appendAnimationCss();
     }
@@ -40,7 +42,7 @@ export class Typed {
         if (this.typingComplete) {
             return this.restart();
         }
-        if(!this.options.hideCursorOnStart){
+        if (!this.options.hideCursor){
             this.insertCursor();
         }
 
@@ -141,7 +143,7 @@ export class Typed {
         if (this.cursorBlinking === isBlinking) {
             return;
         }
-        this.cursorBlinking = this.options.hideCursorOnStart == false;
+        this.cursorBlinking = this.options.hideCursor == false;
         const status = isBlinking ? 'infinite' : 0;
         this.cursor.style.animationIterationCount = status;
     }

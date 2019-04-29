@@ -1,17 +1,17 @@
 import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
-import {Typed} from './typed';
+import { Typed, NgTypedOptions} from './typed';
 
 @Directive({
   selector: '[ng-typed]'
 })
 export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
   typed: Typed;
-  @Input('ng-typed') ngTyped = {
+  @Input('ng-typed') ngTyped: NgTypedOptions = {
     speed: 0,
     timeout: 0,
     hideCursorOnComplete: false,
-    hideCursorOnStart: false,
+    hideCursor: false,
     text: ''
   }
   @Output('complete') complete: EventEmitter<null> = new EventEmitter();
@@ -76,13 +76,13 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
         speed: this.ngTyped.speed,
         timeout: this.ngTyped.timeout,
         hideCursorOnComplete: this.ngTyped.hideCursorOnComplete,
-        hideCursorOnStart: this.ngTyped.hideCursorOnStart,
+        hideCursor: this.ngTyped.hideCursor,
         onComplete: () => {
           this.complete.emit(null);
           this.typingLock = false;
-        }
-      },
-      this.ngTyped.text
+        },
+        text: this.ngTyped.text
+      }
     );
 
     this.typed.begin();
