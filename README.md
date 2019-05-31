@@ -49,7 +49,7 @@ export class AppModule {}
 - hideCursorOnComplete
 - hideCursorOnStart
 - text
-- cursor
+- cursor (default: '|')
 
 ## @Output("complete")
 
