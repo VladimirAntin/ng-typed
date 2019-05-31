@@ -12,8 +12,9 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
     timeout: 0,
     hideCursorOnComplete: false,
     hideCursor: false,
-    text: ''
-  }
+    text: '',
+    cursor: '|'
+  };
   @Output('complete') complete: EventEmitter<null> = new EventEmitter();
   typingLock = false;
   contentObservable: Observable<string>;
@@ -81,7 +82,8 @@ export class NgTypedDirective implements OnInit, OnChanges, AfterViewInit {
           this.complete.emit(null);
           this.typingLock = false;
         },
-        text: this.ngTyped.text
+        text: this.ngTyped.text,
+        cursor: this.ngTyped.cursor
       }
     );
 

@@ -6,6 +6,7 @@ export interface NgTypedOptions {
   hideCursor?: boolean;
   onComplete?: any;
   text: string;
+  cursor: string;
 }
 export class Typed {
     element: any;
@@ -16,6 +17,7 @@ export class Typed {
     cursorBlinking: boolean;
     typingComplete: boolean;
     timeout: any;
+    cursorCharacter: string;
 
     constructor(element: any, options: NgTypedOptions) {
         const defaults: NgTypedOptions = {
@@ -25,7 +27,8 @@ export class Typed {
             hideCursorOnComplete: false,
             hideCursor: false,
             onComplete: () => {},
-            text: ''
+            text: '',
+            cursor: '|'
         };
 
         this.element = element;
@@ -35,6 +38,7 @@ export class Typed {
         this.typingComplete = false;
         this.textContent = this.options.text;
         this.element.textContent = '';
+        this.cursorCharacter = this.options.cursor;
         this.appendAnimationCss();
     }
 
@@ -115,7 +119,7 @@ export class Typed {
 
         this.cursor = document.createElement('span');
         this.cursor.className = 'typed-cursor';
-        this.cursor.innerHTML = '|';
+        this.cursor.innerHTML = this.cursorCharacter;
 
       const retVal = this.element.parentNode.insertBefore(this.cursor, this.element.nextSibling) && this.element.parentNode;
     }
