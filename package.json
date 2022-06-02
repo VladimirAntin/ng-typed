@@ -29,7 +29,7 @@
   "homepage": "https://github.com/vladimirantin/ng-typed#readme",
   "dependencies": {
     "@angular/common": "^6.0.3",
-    "@angular/core": "^6.0.3",
+    "@angular/core": "^11.0.5",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
